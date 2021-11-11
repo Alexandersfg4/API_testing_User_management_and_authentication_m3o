@@ -1,7 +1,7 @@
 
 
 def assert_status_codes_are_matched(actual_code, excepted_code):
-    assert actual_code == excepted_code, f'{actual_code} is not mathced with {excepted_code}'
+    assert actual_code == excepted_code, f'{excepted_code} is not mathced with {actual_code}'
         
         
 def assert_parameters_of_created_user_are_corrected(read_playload, created_playload): 

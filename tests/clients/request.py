@@ -22,6 +22,10 @@ class APIRequest:
     def delete(self, url, payload, headers):
         response = requests.delete(url, json=payload, headers=headers)
         return self.__get_responses(response)
+    
+    def put(self, url, payload, headers):
+        response = requests.put(url, json=payload, headers=headers)
+        return self.__get_responses(response)
 
     def __get_responses(self, response):
         status_code = response.status_code

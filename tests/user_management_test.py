@@ -1,48 +1,39 @@
-import requests
 import pytest
-import config
+from assertion.common_assertion import *
+from clients.user_client import UserClient
+from clients.data_client import DataClient
 
+client = UserClient()
+data = DataClient()
 
-def test_create_new_user(create_new_user):
-    # create user
-    created_data = create_new_user
-    # read created user by id
-    response = requests.post(
-        url=f"{config.BASE_URL_USER}Read",
-        headers=config.HEADERS,
-        json={
-            "id": created_data['id']
-            }
-        )
-    read_data = response.json()["account"]
-    assert response.status_code == 200, "Status code should be eaqual 200"
-    assert read_data["username"] == created_data["username"], "Requested username == created username"
-    assert read_data["email"] == created_data["email"], "Requested email == created email"
-    # Delay should be less than 5 sec
-    assert created_data["timestamp"] + 5 >= int(read_data["created"]) >= created_data["timestamp"], "Check creation time"
-    assert created_data["timestamp"] + 5 >= int(read_data["updated"]) >= created_data["timestamp"], "Check updation time"
+#DONE
+def test_create_new_user():
+    created_playload, status_code = client.create_user()
+    assert_status_codes_are_matched(200, status_code)
+    data.write_playload(created_playload, 'test_update_new_user')
+    read_playload, status_code = client.read_user(created_playload, read_by="id")
+    assert_status_codes_are_matched(200, status_code)
+    assert_parameters_of_created_user_are_corrected(read_playload, created_playload)
 
-
-def test_dselete_user_1(create_new_user):
-    # create user
-    created_data = create_new_user
-    # delete user
-    response = requests.delete(
-        url=f"{config.BASE_URL_USER}Delete",
-        headers=config.HEADERS,
-        json={
-            "id": created_data['id']
-        }
-        )
-    assert response.status_code == 200, "Status code should be eaqual 200"
-    # read created user by id
-    response = requests.post(
-        url=f"{config.BASE_URL_USER}Read",
-        headers=config.HEADERS,
-        json={
-            "id": created_data['id']
-        }
-        )
-    assert response.status_code == 500, "Status code should be eaqual 500"   
-
-
+#DONE
+def test_delete_user():
+    created_playload, status_code = client.create_user()
+    assert_status_codes_are_matched(200, status_code)
+    read_playload, status_code = client.read_user(created_playload, read_by="id")
+    assert_status_codes_are_matched(200, status_code)
+    assert_parameters_of_created_user_are_corrected(read_playload, created_playload)
+    print(created_playload["id"])
+    status_code = client.delete_user(read_playload)
+    assert_status_codes_are_matched(200, status_code)
+    __, status_code = client.read_user(created_playload, read_by="username")
+    assert_status_codes_are_matched(500, status_code)
+    
+def test_update_user_data():
+    created_playload, status_code = client.create_user()
+    assert_status_codes_are_matched(200, status_code)
+    updated_playload = data.get_playloads('test_update_user_data')[0]
+    playload, status_code = client.update_user_data(created_playload, updated_playload) 
+    assert_status_codes_are_matched(200, status_code)
+    read_playload, status_code = client.read_user(created_playload, read_by="id")
+    data.write_playload(read_playload, "read")
+    assert_status_codes_are_matched(200, status_code)

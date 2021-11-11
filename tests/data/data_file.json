@@ -1,0 +1,50 @@
+{
+    "created": [
+        {
+            "email": "user1636616467@test.com",
+            "id": "usrid-1636616467",
+            "password": "mySecretPass123",
+            "username": "usrname-1636616467",
+            "timestamp": 1636616467
+        },
+        {
+            "email": "user1636616997@test.com",
+            "id": "usrid-1636616997",
+            "password": "mySecretPass123",
+            "username": "usrname-1636616997",
+            "timestamp": 1636616997
+        }
+    ],
+    "test_create_new_user": [
+        {
+            "email": "user1636617161@test.com",
+            "id": "usrid-1636617161",
+            "password": "mySecretPass123",
+            "username": "usrname-1636617161",
+            "timestamp": 1636617161
+        }
+    ],
+    "test_update_user_data": [
+        {
+            "email": "new@test.com",
+            "id": "usrid-1636617217",
+            "password": "mySecretPass123",
+            "username": "new",
+            "timestamp": 1636617217
+        }
+    ],
+    "read": [
+        {
+            "account": {
+                "id": "usrid-1636619165",
+                "username": "new",
+                "email": "new@test.com",
+                "created": "1636619166",
+                "updated": "1636619166",
+                "verified": false,
+                "verificationDate": "0",
+                "profile": {}
+            }
+        }
+    ]
+}
