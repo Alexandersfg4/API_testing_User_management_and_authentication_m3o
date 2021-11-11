@@ -13,11 +13,13 @@ class DataClient:
               read_data, indent=4
             ))
         
-    def get_playloads(self, key):
+    def get_test_data(self, key, amount_var):
         data = self.__read_data()[key] 
-        return data
+        list = [tuple(data[i:i + amount_var]) for i in range(0, len(data), amount_var)]
+        return list
     
     def __read_data(self):
         with open(self.path_to_file, 'r') as file:
             data = json.load(file)
-        return data       
+        return data 
+               
