@@ -1,5 +1,5 @@
 # Building an API test automation framework with Python
-https://m3o.com/user
+The test API: https://m3o.com/user
 
 ## Purpose
 To build own framework based on the knowledge: [Test automation university](https://testautomationu.applitools.com/)
@@ -19,7 +19,10 @@ API_KEY = "dasfsd3223sdfsdf23ds"
 
 ## How to run
 ```zsh
+# Run all test cases
 pytest -v
+# Run smoke check only
+pytest -m smoke_check -v
 ```
 ## Implemented test cases
 I have named test files based on functionality

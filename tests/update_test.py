@@ -8,6 +8,7 @@ data = DataClient()
 user_data = data.get_test_data('test_user_can_be_updated', 4)
 not_existed_user = data.get_test_data('test_user_can_not_be_updated', 1)[0]
 
+@pytest.mark.smoke_check
 @pytest.mark.parametrize('current_playload, read_by_d, desired_playload, read_by_c', user_data)    
 def test_user_can_be_updated(current_playload, read_by_d, desired_playload, read_by_c):
     status_code = client.update_user_data(desired_playload) 

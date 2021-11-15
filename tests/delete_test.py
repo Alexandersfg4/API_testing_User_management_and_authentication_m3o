@@ -8,7 +8,7 @@ data = DataClient()
 can_be_deleted = data.get_test_data('test_new_user_can_be_deleted', 1)
 not_existed_user = data.get_test_data('test_not_existed_user_can_not_be_deleted', 1)
 
-
+@pytest.mark.smoke_check
 @pytest.mark.parametrize("read_by", can_be_deleted)    
 def test_new_user_can_be_deleted(read_by):
     created_playload, status_code = client.create_user()

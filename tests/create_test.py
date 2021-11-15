@@ -7,6 +7,7 @@ client = UserClient()
 data = DataClient()
 invalid_data = data.get_test_data('test_add_user_invalid_data', 4)
 
+@pytest.mark.smoke_check
 def test_new_user_can_be_added():
     created_playload, status_code = client.create_user()
     assert_status_codes_are_matched(200, status_code)
