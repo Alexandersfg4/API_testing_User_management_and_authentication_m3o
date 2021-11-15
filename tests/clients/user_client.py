@@ -26,8 +26,7 @@ class UserClient(BaseClient):
             "username": f"usrname-{unix_timestamp}"
             } 
         else:
-            playload = body
-        
+            playload = self.__extract_if_tuple(body)
         response = self.request.post(f"{self.base_url}Create", playload, self.headers)
         playload["timestamp"] = unix_timestamp
         return playload, response.status_code 
@@ -35,7 +34,7 @@ class UserClient(BaseClient):
     def read_user(self, created_playload, read_by="id"):
         playload = self.__create_playload_for_reading(created_playload, read_by)
         response = self.request.post(f"{self.base_url}Read", playload, self.headers)
-        print(playload)
+        print(response.as_dict)
         try:
             playload = response.as_dict['account']
         except KeyError:
@@ -53,6 +52,7 @@ class UserClient(BaseClient):
         return playload 
     
     def delete_user(self, playload):
+        playload = self.__extract_if_tuple(playload)
         playload = {
             "id": playload['id'] 
         }                
@@ -60,6 +60,7 @@ class UserClient(BaseClient):
         return response.status_code  
         
     def update_user_data(self, playload_to_user):
+        playload_to_user = self.__extract_if_tuple(playload_to_user)
         playload = {
             'id': playload_to_user['id'],
             'email': playload_to_user['email'],
@@ -67,3 +68,11 @@ class UserClient(BaseClient):
         } 
         response = self.request.put(f"{self.base_url}Update", playload, self.headers)
         return response.status_code   
+    
+    def __extract_if_tuple(self, body):
+        if type(body) == tuple:
+            playload = body[0]
+        else:    
+            playload = body
+        print(playload)    
+        return dict(playload)    

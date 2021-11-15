@@ -1,19 +1,9 @@
 {
     "created": [
-        {
-            "email": "user1636616467@test.com",
-            "id": "usrid-1636616467",
-            "password": "mySecretPass123",
-            "username": "usrname-1636616467",
-            "timestamp": 1636616467
-        },
-        {
-            "email": "user1636616997@test.com",
-            "id": "usrid-1636616997",
-            "password": "mySecretPass123",
-            "username": "usrname-1636616997",
-            "timestamp": 1636616997
-        }
+
+    ],
+    "read": [
+    
     ],
     "test_create_new_user": [
         {
@@ -24,7 +14,7 @@
             "timestamp": 1636617161
         }
     ],
-    "test_update_user_data": [
+    "test_user_can_be_updated": [
         {
             "id": "usrid-1636619165",
             "username": "old_username",
@@ -32,15 +22,90 @@
             "created": "1636619166",
             "updated": "1636619166"
         },
+        "id",
         {
             "id": "usrid-1636619165",
             "username": "new_username",
             "email": "new_email@test.com",
             "created": "1636619166",
             "updated": "1636619166"
-        }
+        },
+        "email",
+        {
+            "email": "user1636616467@test.com",
+            "id": "usrid-1636616467",
+            "password": "mySecretPass123",
+            "username": "usrname-1636616467",
+            "created": "1636616467",
+            "updated": "1636616467"
+        },
+        "username",
+        {
+            "id": "usrid-1636616467",
+            "username": "new_username-1636616467",
+            "email": "new_email1636616467@test.com",
+            "created": "1636616467",
+            "updated": "1636616467"
+        },
+        "id"
     ],
-    "read": [
-    
-    ]
+    "test_add_user_invalid_data": [
+        {
+            "email": "email001@test.com",
+            "id": "usrid-1636616467",
+            "password": "mySecretPass123",
+            "username": "usrname-us"
+        },
+        500,
+        500,
+        "email",
+        {
+            "email": "user1636616997@test.com",
+            "id": "usrid-02",
+            "password": "mySecretPass123",
+            "username": "usrname-3ww"
+        },
+        400,
+        500,
+        "id",
+        {
+            "email": "te@test.com",
+            "id": "usrid-03",
+            "password": "mySecretPass123",
+            "username": "usrname-1636616997"
+        },
+        400,
+        500,
+        "id",
+        {
+            "email": "tetest.com",
+            "id": "usrid-ds04",
+            "password": "mySecretPass123",
+            "username": "usrname-inv"
+        },
+        400,
+        500,
+        "username"
+    ],    
+    "test_not_existed_user_can_not_be_deleted": [
+        {
+            "email": "email02@test.com",
+            "id": "usrid-not-existed-id-1",
+            "password": "mySecretPass123",
+            "username": "usrname-not-existed-1"
+        }
+    ],    
+    "test_new_user_can_be_deleted": [
+        "id",
+        "username",
+        "email"
+    ],
+    "test_user_can_not_be_updated": [
+        {
+            "email": "email03@test.com",
+            "id": "usrid-not-existed-id-2",
+            "password": "mySecretPass123",
+            "username": "usrname-not-existed-2"
+        }
+    ]    
 }

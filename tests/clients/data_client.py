@@ -4,7 +4,6 @@ class DataClient:
     def __init__(self) -> None:
         self.path_to_file = "tests/data/data_file.json"
         
-        
     def write_playload(self, playload, key='created'):
         read_data = self.__read_data()
         read_data[key].append(playload)
