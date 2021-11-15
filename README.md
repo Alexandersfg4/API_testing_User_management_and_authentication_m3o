@@ -70,5 +70,5 @@ I have named test files based on functionality
 
 <br> 2. test_user_can_not_be_updated
 <br> Steps: </br>
-- Update unexisted user
+- Update not existed user
 <br> Excepted result: status code = 500
