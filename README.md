@@ -2,7 +2,7 @@
 https://m3o.com/user
 
 ## Purpose
-To build own framework based on knowlage bot sake of the guys : [Test automation university](https://testautomationu.applitools.com/)
+To build own framework based on the knowledge: [Test automation university](https://testautomationu.applitools.com/)
 
 ## Setup
 
